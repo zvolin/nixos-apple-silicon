@@ -74,9 +74,6 @@
           message = "wireplumber >= 0.5.2 is required for nixos-apple-silicon.";
         }
       ];
-
-      # wireplumber ≥0.5 looks for scripts in datadirs only
-      systemd.user.services.wireplumber.environment.XDG_DATA_DIRS = "${asahi-audio}/share";
     }
     (lib.optionalAttrs newHotness {
       # use configPackages and friends to install asahi-audio and plugins
@@ -94,6 +91,9 @@
       environment.etc = builtins.listToAttrs (builtins.map
         (f: { name = f; value = { source = "${asahi-audio}/share/${f}"; }; })
         asahi-audio.providedConfigFiles);
+
+      # wireplumber ≥0.5 looks for scripts in datadirs only
+      systemd.user.services.wireplumber.environment.XDG_DATA_DIRS = "${asahi-audio}/share";
 
       systemd.user.services.pipewire.environment.LV2_PATH = lv2Path;
       systemd.user.services.wireplumber.environment.LV2_PATH = lv2Path;
