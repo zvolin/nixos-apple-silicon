@@ -7,13 +7,13 @@ stdenv.mkDerivation rec {
   pname = "asahi-audio";
   # tracking: https://src.fedoraproject.org/rpms/asahi-audio
   # note: ensure that the providedConfigFiles list below is current!
-  version = "2.1";
+  version = "2.2";
 
   src = fetchFromGitHub {
     owner = "AsahiLinux";
     repo = "asahi-audio";
     rev = "v${version}";
-    hash = "sha256-ZyA3MjlP1FV822P0AjYAk2YgNKfiEVYnBlPagvFOm+M=";
+    hash = "sha256-5YBQibt/dfJb9/TzF6rczeQE3ySm0SeewhZrgublu2E=";
   };
 
   preBuild = ''
